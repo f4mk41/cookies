@@ -83,12 +83,13 @@ public class CookieManagerModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void setFromResponse(String url, String cookie, final Promise promise) {
+    public void setFromResponse(String url, String cookie, Boolean useWebKit, final Promise promise) {
         if (cookie == null) {
             promise.reject(new Exception(INVALID_COOKIE_VALUES));
             return;
         }
 
+        // useWebKit parameter is ignored on Android (iOS only)
         addCookies(url, cookie, promise);
     }
 
